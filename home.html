@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI JobFinder – Search Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+</head>
+<body class="home-page">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">◈</span>
+        <span class="logo-text">AI <strong>JobFinder</strong></span>
+      </a>
+      <nav class="site-nav">
+        <a href="index.html" class="nav-link">Landing</a>
+        <a href="home.html" class="nav-link active">Search</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="dashboard">
+
+    <!-- Search Panel -->
+    <section class="search-panel">
+      <div class="search-panel-inner">
+        <div class="search-heading">
+          <h1>What's your<br /><span class="headline-accent">ideal role?</span></h1>
+          <p class="search-sub">Describe in plain language. The AI handles the rest.</p>
+        </div>
+
+        <div class="search-form" id="searchForm">
+          <div class="textarea-wrap">
+            <label for="queryInput" class="sr-only">Describe your job requirements</label>
+            <textarea
+              id="queryInput"
+              class="query-input"
+              rows="4"
+              placeholder="e.g. Senior Python developer, remote-friendly, fintech startup, 5+ years experience, good work-life balance..."
+              spellcheck="false"
+            ></textarea>
+            <div class="input-hint">Try: "React developer NYC" · "Remote data scientist Python" · "UX designer startup"</div>
+          </div>
+          <button class="btn btn-primary btn-lg search-btn" id="searchBtn" type="button">
+            <svg class="btn-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="2"/>
+              <path d="M13.5 13.5L17 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span id="btnLabel">Search Jobs</span>
+          </button>
+        </div>
+
+        <!-- Quick chips -->
+        <div class="quick-chips">
+          <span class="chip-label">Quick searches:</span>
+          <button class="chip" data-query="Python developer remote">Python Dev · Remote</button>
+          <button class="chip" data-query="UX designer New York startup">UX Designer · NYC</button>
+          <button class="chip" data-query="data scientist machine learning">Data Scientist · ML</button>
+          <button class="chip" data-query="frontend React engineer">Frontend · React</button>
+          <button class="chip" data-query="DevOps cloud AWS">DevOps · Cloud</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section class="results-section" id="resultsSection">
+      <div class="results-inner">
+
+        <!-- Spinner -->
+        <div class="spinner-wrap" id="spinnerWrap" aria-hidden="true">
+          <div class="ai-spinner">
+            <div class="spinner-ring ring-1"></div>
+            <div class="spinner-ring ring-2"></div>
+            <div class="spinner-ring ring-3"></div>
+            <div class="spinner-icon">◈</div>
+          </div>
+          <p class="spinner-text">AI is scanning <span id="scanCount">0</span> listings…</p>
+        </div>
+
+        <!-- Empty state -->
+        <div class="empty-state" id="emptyState">
+          <div class="empty-icon">⌕</div>
+          <p>Your search results will appear here.<br/>Describe your dream role above to get started.</p>
+        </div>
+
+        <!-- No results state -->
+        <div class="no-results" id="noResults" style="display:none">
+          <div class="empty-icon">∅</div>
+          <p>No matching jobs found for your query.<br/>Try different keywords or broaden your description.</p>
+        </div>
+
+        <!-- Results header + table -->
+        <div class="results-content" id="resultsContent" style="display:none">
+          <div class="results-meta">
+            <div class="results-count">
+              Showing <strong id="resultCount">0</strong> matches
+              <span class="results-query" id="resultsQuery"></span>
+            </div>
+            <div class="results-sort">
+              <label for="sortSelect">Sort by:</label>
+              <select id="sortSelect" class="sort-select">
+                <option value="score">Match Score</option>
+                <option value="title">Job Title</option>
+                <option value="company">Company</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table class="jobs-table" id="jobsTable">
+              <thead>
+                <tr>
+                  <th class="th-title">Job Title</th>
+                  <th class="th-company">Company</th>
+                  <th class="th-location">Location</th>
+                  <th class="th-score">Match</th>
+                  <th class="th-action">Action</th>
+                </tr>
+              </thead>
+              <tbody id="jobsTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a href="index.html" class="logo logo-sm">
+        <span class="logo-icon">◈</span>
+        <span class="logo-text">AI <strong>JobFinder</strong></span>
+      </a>
+      <p class="footer-copy">© 2025 AI JobFinder. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
